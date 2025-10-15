@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
 
 @Component({
@@ -11,9 +11,8 @@ export class HeaderComponent {
   @Input() isHandset = false;
   @Output() readonly menuToggle = new EventEmitter<void>();
 
+  private readonly themeService = inject(ThemeService);
   readonly theme$ = this.themeService.theme$;
-
-  constructor(private readonly themeService: ThemeService) {}
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
