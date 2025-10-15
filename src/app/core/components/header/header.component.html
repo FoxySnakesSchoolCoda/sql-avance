@@ -1,0 +1,65 @@
+<mat-toolbar color="primary" class="app-header" [class.is-scrolled]="isScrolled">
+  <div class="brand">
+    <button
+      mat-icon-button
+      class="menu-button"
+      type="button"
+      aria-label="Ouvrir la navigation"
+      (click)="menuToggle.emit()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="logo">
+      <div class="logo-icon">
+        <mat-icon>favorite</mat-icon>
+      </div>
+      <span class="logo-text">LoveBook</span>
+    </div>
+  </div>
+
+  <div class="search">
+    <mat-form-field appearance="outline">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput type="search" placeholder="Rechercher sur LoveBook" />
+    </mat-form-field>
+  </div>
+
+  <div class="actions">
+    <button
+      mat-icon-button
+      matBadge="3"
+      matBadgeColor="warn"
+      matBadgeOverlap="false"
+      matTooltip="Notifications"
+      aria-label="Notifications"
+    >
+      <mat-icon>notifications</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matBadge="5"
+      matBadgeColor="accent"
+      matBadgeOverlap="false"
+      matTooltip="Messages"
+      aria-label="Messages"
+    >
+      <mat-icon>chat_bubble</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Profil" aria-label="Profil">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="theme-toggle"
+      [attr.aria-label]="(theme$ | async) === 'dark' ? 'Activer le mode clair' : 'Activer le mode sombre'"
+      matTooltip="Mode clair / sombre"
+      type="button"
+      (click)="onToggleTheme()"
+    >
+      <mat-icon *ngIf="(theme$ | async) === 'dark'; else darkIcon">light_mode</mat-icon>
+      <ng-template #darkIcon>
+        <mat-icon>dark_mode</mat-icon>
+      </ng-template>
+    </button>
+  </div>
+</mat-toolbar>

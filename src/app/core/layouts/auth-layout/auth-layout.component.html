@@ -1,0 +1,25 @@
+<div class="auth-layout">
+  <div class="brand-panel">
+    <div class="brand-logo">
+      <div class="icon">
+        <mat-icon>favorite</mat-icon>
+      </div>
+      <div class="text">
+        <h1>LoveBook</h1>
+        <p>Le réseau social pour vos moments partagés.</p>
+      </div>
+    </div>
+  </div>
+  <main class="auth-card">
+    <header class="auth-card__header">
+      <h2>Bienvenue</h2>
+      <p>Connectez-vous pour retrouver votre communauté LoveBook.</p>
+    </header>
+    <section class="auth-card__content">
+      <router-outlet></router-outlet>
+    </section>
+    <footer class="auth-card__footer">
+      <small>© {{ currentYear }} LoveBook</small>
+    </footer>
+  </main>
+</div>
