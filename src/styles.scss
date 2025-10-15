@@ -170,8 +170,6 @@ $lovebook-dark: mat.m2-define-dark-theme((
 ));
 
 :root {
-  @include mat.system-level-typography($lovebook-typography);
-  @include mat.all-component-typographies($lovebook-typography);
   @include mat.all-component-densities($lovebook-light);
   @include mat.system-level-colors($lovebook-light);
   @include mat.all-component-colors($lovebook-light);
