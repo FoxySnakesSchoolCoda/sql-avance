@@ -1,4 +1,7 @@
 :host {
   display: block;
-  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--lovebook-background);
+  color: var(--lovebook-text);
+  transition: background-color var(--lovebook-transition), color var(--lovebook-transition);
 }

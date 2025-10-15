@@ -1,0 +1,16 @@
+<nav class="sidebar" aria-label="Navigation principale">
+  <mat-nav-list class="sidebar-list" role="list">
+    <a
+      mat-list-item
+      class="sidebar-link"
+      *ngFor="let link of links; trackBy: trackByRoute"
+      [routerLink]="link.route"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="link.route === '/' ? { exact: true } : { exact: false }"
+      (click)="onNavigate()"
+    >
+      <mat-icon matListItemIcon [fontIcon]="link.icon"></mat-icon>
+      <span matListItemTitle>{{ link.label }}</span>
+    </a>
+  </mat-nav-list>
+</nav>

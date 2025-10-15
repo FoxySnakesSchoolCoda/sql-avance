@@ -1,0 +1,172 @@
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-toolbar {
+  display: grid;
+  grid-template-columns: auto minmax(220px, 1fr) auto;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  height: var(--lovebook-header-height);
+  padding: 0 clamp(1rem, 2vw, 2.25rem);
+  background: var(--lovebook-header-surface);
+  color: var(--lovebook-header-foreground);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--lovebook-border-color);
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+  transition: background-color var(--lovebook-transition), color var(--lovebook-transition),
+    border-color var(--lovebook-transition), box-shadow var(--lovebook-transition);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.menu-button {
+  backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid transparent;
+  transition: background-color var(--lovebook-transition), border-color var(--lovebook-transition);
+}
+
+:host-context(.theme-dark) .menu-button {
+  background: rgba(28, 29, 30, 0.6);
+}
+
+.menu-button:hover {
+  background: rgba(24, 119, 242, 0.14);
+  border-color: rgba(24, 119, 242, 0.32);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: inherit;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(24, 119, 242, 0.95), rgba(12, 92, 198, 0.9));
+  color: #fff;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.brand-icon mat-icon {
+  font-size: 1.4rem;
+}
+
+.brand-name {
+  white-space: nowrap;
+}
+
+.search-field-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.search-field {
+  width: min(100%, 460px);
+  --mdc-outlined-text-field-container-shape: 999px;
+  --mdc-outlined-text-field-container-color: var(--lovebook-header-search-bg);
+  --mdc-outlined-text-field-outline-color: transparent;
+  --mdc-outlined-text-field-hover-outline-color: rgba(24, 119, 242, 0.35);
+  --mdc-outlined-text-field-focus-outline-color: rgba(24, 119, 242, 0.45);
+  --mdc-outlined-text-field-input-text-color: var(--lovebook-text);
+  --mdc-outlined-text-field-input-caret-color: var(--lovebook-primary);
+  --mdc-outlined-text-field-label-text-color: var(--lovebook-muted-text);
+  --mat-mdc-form-field-floating-label-scale: 0.9;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--lovebook-header-search-bg);
+  box-shadow: inset 0 1px 3px rgba(15, 23, 42, 0.08);
+  transition: box-shadow var(--lovebook-transition), background-color var(--lovebook-transition);
+}
+
+.search-field input[matInput] {
+  padding-inline: 0.5rem 0.75rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.35rem;
+}
+
+.header-actions button {
+  color: inherit;
+  background: transparent;
+  border: 1px solid transparent;
+  transition: background-color var(--lovebook-transition), border-color var(--lovebook-transition),
+    transform var(--lovebook-transition);
+}
+
+.header-actions button:hover {
+  background: rgba(24, 119, 242, 0.12);
+  border-color: rgba(24, 119, 242, 0.2);
+  transform: translateY(-1px);
+}
+
+.header-actions mat-icon {
+  font-size: 1.4rem;
+}
+
+::ng-deep .header-toolbar .mat-badge-content {
+  background-color: var(--lovebook-primary) !important;
+  color: var(--lovebook-on-primary) !important;
+}
+
+@media (max-width: 960px) {
+  .header-toolbar {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      'left actions'
+      'search search';
+    row-gap: 0.5rem;
+    height: auto;
+    padding-block: 0.75rem;
+  }
+
+  .header-left {
+    grid-area: left;
+  }
+
+  .search-field-wrapper {
+    grid-area: search;
+    width: 100%;
+  }
+
+  .header-actions {
+    grid-area: actions;
+  }
+}
+
+@media (max-width: 720px) {
+  .search-field {
+    width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .header-toolbar {
+    padding-inline: 0.75rem;
+  }
+
+  .header-actions {
+    gap: 0.2rem;
+  }
+}

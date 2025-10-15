@@ -1,41 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
+interface SidebarLink {
+  label: string;
+  icon: string;
+  route: string;
+}
 
 @Component({
   standalone: false,
   selector: 'app-sidebar',
-  template: `
-    <nav class="sidebar">
-      <ul>
-        <li><a routerLink="/users">Users</a></li>
-        <li><a routerLink="/groups">Groups</a></li>
-        <li><a routerLink="/events">Events</a></li>
-        <li><a routerLink="/messages">Messages</a></li>
-        <li><a routerLink="/albums">Albums</a></li>
-        <li><a routerLink="/admin">Admin</a></li>
-      </ul>
-    </nav>
-  `,
-  styles: [
-    `
-      .sidebar {
-        width: 240px;
-        padding: 1rem;
-        background-color: #f4f5f7;
-        height: 100%;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      a {
-        color: #3b5998;
-        text-decoration: none;
-      }
-      li + li {
-        margin-top: 0.5rem;
-      }
-    `,
-  ],
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+  @Output() readonly linkSelected = new EventEmitter<void>();
+
+  readonly links: SidebarLink[] = [
+    { label: 'Accueil', icon: 'home', route: '/' },
+    { label: 'Groupes', icon: 'groups', route: '/groups' },
+    { label: 'Événements', icon: 'event', route: '/events' },
+    { label: 'Messages', icon: 'chat_bubble', route: '/messages' },
+    { label: 'Albums', icon: 'photo_library', route: '/albums' },
+    { label: 'Billetterie', icon: 'confirmation_number', route: '/tickets' },
+    { label: 'Administration', icon: 'admin_panel_settings', route: '/admin' },
+  ];
+
+  onNavigate(): void {
+    this.linkSelected.emit();
+  }
+
+  trackByRoute(_: number, link: SidebarLink): string {
+    return link.route;
+  }
+}

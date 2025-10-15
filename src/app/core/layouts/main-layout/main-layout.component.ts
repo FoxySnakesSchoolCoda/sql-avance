@@ -1,37 +1,49 @@
-import { Component } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, effect, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, shareReplay } from 'rxjs';
+
+const HANDSET_QUERY = '(max-width: 959px)';
 
 @Component({
   standalone: false,
   selector: 'app-main-layout',
-  template: `
-    <div class="layout">
-      <app-header></app-header>
-      <div class="layout-body">
-        <app-sidebar></app-sidebar>
-        <main class="layout-content">
-          <router-outlet></router-outlet>
-        </main>
-      </div>
-      <app-footer></app-footer>
-    </div>
-  `,
-  styles: [
-    `
-      .layout {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-      .layout-body {
-        flex: 1;
-        display: flex;
-      }
-      .layout-content {
-        flex: 1;
-        padding: 1.5rem;
-        background-color: #f9fafc;
-      }
-    `,
-  ],
+  templateUrl: './main-layout.component.html',
+  styleUrls: ['./main-layout.component.css'],
 })
-export class MainLayoutComponent {}
+export class MainLayoutComponent {
+  private readonly breakpointObserver = inject(BreakpointObserver);
+
+  private readonly handset$ = this.breakpointObserver
+    .observe(HANDSET_QUERY)
+    .pipe(
+      map((result) => result.matches),
+      shareReplay({ bufferSize: 1, refCount: true })
+    );
+
+  readonly isHandset = toSignal(this.handset$, {
+    initialValue: this.breakpointObserver.isMatched(HANDSET_QUERY),
+  });
+
+  readonly drawerOpened = signal(!this.breakpointObserver.isMatched(HANDSET_QUERY));
+
+  private readonly _syncDrawerState = effect(() => {
+    if (this.isHandset()) {
+      this.drawerOpened.set(false);
+    } else {
+      this.drawerOpened.set(true);
+    }
+  });
+
+  onToggleMenu(): void {
+    if (this.isHandset()) {
+      this.drawerOpened.update((opened) => !opened);
+    }
+  }
+
+  onSidebarNavigate(): void {
+    if (this.isHandset()) {
+      this.drawerOpened.set(false);
+    }
+  }
+}
