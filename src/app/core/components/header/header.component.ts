@@ -1,28 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   standalone: false,
   selector: 'app-header',
-  template: `
-    <header class="app-header">
-      <h1 class="app-title">LoveBook</h1>
-    </header>
-  `,
-  styles: [
-    `
-      .app-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem;
-        background-color: #3b5998;
-        color: #fff;
-      }
-      .app-title {
-        margin: 0;
-        font-size: 1.5rem;
-      }
-    `,
-  ],
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  @Input() isHandset = false;
+  @Output() readonly menuToggle = new EventEmitter<void>();
+
+  readonly theme$ = this.themeService.theme$;
+
+  constructor(private readonly themeService: ThemeService) {}
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
+  }
+
+  onToggleMenu(): void {
+    this.menuToggle.emit();
+  }
+}

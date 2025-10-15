@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.app-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+  padding: 1.5rem clamp(1rem, 4vw, 2.5rem);
+  background: var(--lovebook-footer-bg);
+  color: var(--lovebook-muted-text);
+  backdrop-filter: blur(16px);
+  border-radius: var(--lovebook-radius);
+  border: 1px solid rgba(9, 30, 66, 0.08);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.08);
+  transition: background-color var(--lovebook-transition), color var(--lovebook-transition),
+    border-color var(--lovebook-transition), box-shadow var(--lovebook-transition);
+}
+
+:host-context(.theme-dark) .app-footer {
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: inherit;
+}
+
+.footer-links a {
+  color: inherit;
+  font-weight: 500;
+}
+
+.separator {
+  opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+  .app-footer {
+    padding-inline: 1.25rem;
+  }
+}

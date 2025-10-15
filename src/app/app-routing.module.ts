@@ -30,6 +30,11 @@ const routes: Routes = [
         loadChildren: () => import('./features/albums/albums.module').then((m) => m.AlbumsModule),
       },
       {
+        path: 'tickets',
+        redirectTo: 'events',
+        pathMatch: 'full',
+      },
+      {
         path: 'admin',
         loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
       },

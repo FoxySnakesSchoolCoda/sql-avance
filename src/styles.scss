@@ -1,0 +1,279 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$lovebook-primary-palette: (
+  0: #00081a,
+  10: #04162f,
+  20: #082c59,
+  30: #0d3f88,
+  40: #1152b7,
+  50: #1566d8,
+  60: #1877f2,
+  70: #4a94f6,
+  80: #7cb1f9,
+  90: #b4d2fd,
+  95: #d9e7fe,
+  99: #f5f8ff,
+  100: #ffffff,
+  contrast: (
+    0: #ffffff,
+    10: #ffffff,
+    20: #ffffff,
+    30: #ffffff,
+    40: #ffffff,
+    50: #ffffff,
+    60: #ffffff,
+    70: #04162f,
+    80: #04162f,
+    90: #04162f,
+    95: #04162f,
+    99: #04162f,
+    100: #04162f,
+  ),
+);
+
+$lovebook-accent-palette: (
+  0: #001307,
+  10: #012812,
+  20: #014f24,
+  30: #026f33,
+  40: #048d41,
+  50: #0ca44d,
+  60: #18bc5b,
+  70: #36d273,
+  80: #6fe29c,
+  90: #b5f2ca,
+  95: #d7fadf,
+  99: #f3fff4,
+  100: #ffffff,
+  contrast: (
+    0: #ffffff,
+    10: #ffffff,
+    20: #ffffff,
+    30: #ffffff,
+    40: #ffffff,
+    50: #ffffff,
+    60: #ffffff,
+    70: #012812,
+    80: #012812,
+    90: #012812,
+    95: #012812,
+    99: #012812,
+    100: #012812,
+  ),
+);
+
+$lovebook-warn-palette: (
+  0: #2d0004,
+  10: #41000a,
+  20: #6a0014,
+  30: #970020,
+  40: #c3002c,
+  50: #df1539,
+  60: #f02849,
+  70: #ff596f,
+  80: #ff8a99,
+  90: #ffc1c9,
+  95: #ffe1e5,
+  99: #fff8f9,
+  100: #ffffff,
+  contrast: (
+    0: #ffffff,
+    10: #ffffff,
+    20: #ffffff,
+    30: #ffffff,
+    40: #ffffff,
+    50: #ffffff,
+    60: #ffffff,
+    70: #41000a,
+    80: #41000a,
+    90: #41000a,
+    95: #41000a,
+    99: #41000a,
+    100: #41000a,
+  ),
+);
+
+$lovebook-primary: mat.define-palette($lovebook-primary-palette, 60);
+$lovebook-accent: mat.define-palette($lovebook-accent-palette, 60);
+$lovebook-warn: mat.define-palette($lovebook-warn-palette, 60);
+
+$lovebook-typography: mat.define-typography-config((
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif,
+  headline-large: mat.define-typography-level(44px, 52px, 600),
+  headline-medium: mat.define-typography-level(36px, 44px, 600),
+  headline-small: mat.define-typography-level(32px, 40px, 600),
+  title-large: mat.define-typography-level(22px, 28px, 600),
+  title-medium: mat.define-typography-level(18px, 24px, 600),
+  title-small: mat.define-typography-level(16px, 24px, 600),
+  body-large: mat.define-typography-level(16px, 24px, 400),
+  body-medium: mat.define-typography-level(14px, 20px, 400),
+  body-small: mat.define-typography-level(13px, 18px, 400),
+  label-large: mat.define-typography-level(14px, 20px, 600),
+  label-medium: mat.define-typography-level(12px, 16px, 500),
+  label-small: mat.define-typography-level(11px, 16px, 500),
+));
+
+$lovebook-light: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: $lovebook-primary,
+    secondary: $lovebook-accent,
+    tertiary: mat.define-palette($lovebook-primary-palette, 40),
+    error: $lovebook-warn,
+  ),
+  typography: $lovebook-typography,
+  density: 0,
+));
+
+$lovebook-dark: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: $lovebook-primary,
+    secondary: $lovebook-accent,
+    tertiary: mat.define-palette($lovebook-primary-palette, 40),
+    error: $lovebook-warn,
+  ),
+  typography: $lovebook-typography,
+  density: 0,
+));
+
+:root {
+  @include mat.system-level-typographies($lovebook-light);
+  @include mat.all-component-typographies($lovebook-light);
+  @include mat.all-component-densities($lovebook-light);
+  @include mat.system-level-colors($lovebook-light);
+  @include mat.all-component-colors($lovebook-light);
+
+  color-scheme: light;
+  --lovebook-primary: #{mat.get-theme-color($lovebook-light, primary)};
+  --lovebook-on-primary: #{mat.get-theme-color($lovebook-light, on-primary)};
+  --lovebook-background: #f0f2f5;
+  --lovebook-surface: #ffffff;
+  --lovebook-surface-alt: #f6f7fb;
+  --lovebook-border-color: rgba(9, 30, 66, 0.1);
+  --lovebook-text: #050505;
+  --lovebook-muted-text: #5b5f6d;
+  --lovebook-header-surface: rgba(255, 255, 255, 0.82);
+  --lovebook-header-foreground: #050505;
+  --lovebook-header-search-bg: rgba(240, 242, 245, 0.9);
+  --lovebook-sidebar-bg: rgba(255, 255, 255, 0.9);
+  --lovebook-sidebar-active-bg: rgba(24, 119, 242, 0.12);
+  --lovebook-sidebar-active-border: #1877f2;
+  --lovebook-footer-bg: rgba(255, 255, 255, 0.85);
+  --lovebook-shadow: 0 24px 48px rgba(15, 23, 42, 0.08);
+  --lovebook-radius: 0.75rem;
+  --lovebook-header-height: 4.25rem;
+  --lovebook-transition: 240ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root.theme-dark {
+  @include mat.system-level-colors($lovebook-dark);
+  @include mat.all-component-colors($lovebook-dark);
+
+  color-scheme: dark;
+  --lovebook-primary: #{mat.get-theme-color($lovebook-dark, primary)};
+  --lovebook-on-primary: #{mat.get-theme-color($lovebook-dark, on-primary)};
+  --lovebook-background: #18191a;
+  --lovebook-surface: #242526;
+  --lovebook-surface-alt: #1d1e20;
+  --lovebook-border-color: rgba(228, 230, 235, 0.12);
+  --lovebook-text: #e4e6eb;
+  --lovebook-muted-text: #b0b3b8;
+  --lovebook-header-surface: rgba(32, 33, 35, 0.8);
+  --lovebook-header-foreground: #e4e6eb;
+  --lovebook-header-search-bg: rgba(58, 59, 61, 0.9);
+  --lovebook-sidebar-bg: rgba(28, 29, 30, 0.9);
+  --lovebook-sidebar-active-bg: rgba(24, 119, 242, 0.22);
+  --lovebook-sidebar-active-border: #4a94f6;
+  --lovebook-footer-bg: rgba(28, 29, 30, 0.82);
+  --lovebook-shadow: 0 24px 52px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--lovebook-background);
+  color: var(--lovebook-text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--lovebook-transition), color var(--lovebook-transition);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 600;
+  color: var(--lovebook-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--lovebook-transition), opacity var(--lovebook-transition);
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+p {
+  margin: 0;
+  color: var(--lovebook-muted-text);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+mat-drawer-container {
+  background: transparent;
+}
+
+.mat-mdc-button,
+.mat-mdc-icon-button,
+.mat-mdc-outlined-button {
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(15, 23, 42, 0.2);
+  border-radius: 999px;
+}
+
+:root.theme-dark ::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.18);
+}
+
+app-root {
+  display: block;
+  min-height: 100%;
+  background: var(--lovebook-background);
+  color: var(--lovebook-text);
+  transition: background-color var(--lovebook-transition), color var(--lovebook-transition);
+}

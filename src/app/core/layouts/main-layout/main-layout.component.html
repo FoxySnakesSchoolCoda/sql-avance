@@ -1,0 +1,27 @@
+<mat-drawer-container
+  class="lovebook-shell"
+  [hasBackdrop]="isHandset()"
+>
+  <mat-drawer
+    class="lovebook-sidebar"
+    [mode]="isHandset() ? 'over' : 'side'"
+    [opened]="drawerOpened()"
+    (openedChange)="drawerOpened.set($event)"
+  >
+    <app-sidebar (linkSelected)="onSidebarNavigate()"></app-sidebar>
+  </mat-drawer>
+
+  <mat-drawer-content class="lovebook-drawer-content">
+    <app-header
+      [isHandset]="isHandset()"
+      (menuToggle)="onToggleMenu()"
+    ></app-header>
+
+    <div class="lovebook-content">
+      <main class="page-content">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer></app-footer>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
