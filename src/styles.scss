@@ -1,5 +1,4 @@
 @use '@angular/material' as mat;
-@use '@angular/material/color' as mat-color;
 
 @include mat.core();
 
@@ -96,46 +95,44 @@ $lovebook-warn-palette: (
   ),
 );
 
-$lovebook-primary: mat-color.define-palette($lovebook-primary-palette, 60);
-$lovebook-accent: mat-color.define-palette($lovebook-accent-palette, 60);
-$lovebook-warn: mat-color.define-palette($lovebook-warn-palette, 60);
+$lovebook-primary: mat.m2-define-palette($lovebook-primary-palette, 60);
+$lovebook-accent: mat.m2-define-palette($lovebook-accent-palette, 60);
+$lovebook-warn: mat.m2-define-palette($lovebook-warn-palette, 60);
 
 $lovebook-font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
-$lovebook-typography: mat.define-typography-config(
+$lovebook-typography: mat.m2-define-typography-config(
   $font-family: $lovebook-font-family,
-  $headline-large: mat.define-typography-level(44px, 52px, 600),
-  $headline-medium: mat.define-typography-level(36px, 44px, 600),
-  $headline-small: mat.define-typography-level(32px, 40px, 600),
-  $title-large: mat.define-typography-level(22px, 28px, 600),
-  $title-medium: mat.define-typography-level(18px, 24px, 600),
-  $title-small: mat.define-typography-level(16px, 24px, 600),
-  $body-large: mat.define-typography-level(16px, 24px, 400),
-  $body-medium: mat.define-typography-level(14px, 20px, 400),
-  $body-small: mat.define-typography-level(13px, 18px, 400),
-  $label-large: mat.define-typography-level(14px, 20px, 600),
-  $label-medium: mat.define-typography-level(12px, 16px, 500),
-  $label-small: mat.define-typography-level(11px, 16px, 500)
+  $headline-large: mat.m2-define-typography-level(44px, 52px, 600),
+  $headline-medium: mat.m2-define-typography-level(36px, 44px, 600),
+  $headline-small: mat.m2-define-typography-level(32px, 40px, 600),
+  $title-large: mat.m2-define-typography-level(22px, 28px, 600),
+  $title-medium: mat.m2-define-typography-level(18px, 24px, 600),
+  $title-small: mat.m2-define-typography-level(16px, 24px, 600),
+  $body-large: mat.m2-define-typography-level(16px, 24px, 400),
+  $body-medium: mat.m2-define-typography-level(14px, 20px, 400),
+  $body-small: mat.m2-define-typography-level(13px, 18px, 400),
+  $label-large: mat.m2-define-typography-level(14px, 20px, 600),
+  $label-medium: mat.m2-define-typography-level(12px, 16px, 500),
+  $label-small: mat.m2-define-typography-level(11px, 16px, 500)
 );
 
-$lovebook-light: mat.define-theme((
+$lovebook-light: mat.m2-define-light-theme((
   color: (
-    theme-type: light,
     primary: $lovebook-primary,
     secondary: $lovebook-accent,
-    tertiary: mat-color.define-palette($lovebook-primary-palette, 40),
+    tertiary: mat.m2-define-palette($lovebook-primary-palette, 40),
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
   density: 0,
 ));
 
-$lovebook-dark: mat.define-theme((
+$lovebook-dark: mat.m2-define-dark-theme((
   color: (
-    theme-type: dark,
     primary: $lovebook-primary,
     secondary: $lovebook-accent,
-    tertiary: mat-color.define-palette($lovebook-primary-palette, 40),
+    tertiary: mat.m2-define-palette($lovebook-primary-palette, 40),
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
