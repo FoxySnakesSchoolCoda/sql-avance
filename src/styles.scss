@@ -95,9 +95,24 @@ $lovebook-warn-palette: (
   ),
 );
 
-$lovebook-primary: mat.m2-define-palette($lovebook-primary-palette, 60);
-$lovebook-accent: mat.m2-define-palette($lovebook-accent-palette, 60);
-$lovebook-warn: mat.m2-define-palette($lovebook-warn-palette, 60);
+$lovebook-primary: mat.m2-define-palette(
+  $lovebook-primary-palette,
+  $default: 60,
+  $lighter: 80,
+  $darker: 40
+);
+$lovebook-accent: mat.m2-define-palette(
+  $lovebook-accent-palette,
+  $default: 60,
+  $lighter: 80,
+  $darker: 40
+);
+$lovebook-warn: mat.m2-define-palette(
+  $lovebook-warn-palette,
+  $default: 60,
+  $lighter: 80,
+  $darker: 40
+);
 
 $lovebook-font-family: 'Inter', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
 
@@ -121,7 +136,12 @@ $lovebook-light: mat.m2-define-light-theme((
   color: (
     primary: $lovebook-primary,
     secondary: $lovebook-accent,
-    tertiary: mat.m2-define-palette($lovebook-primary-palette, 40),
+    tertiary: mat.m2-define-palette(
+      $lovebook-primary-palette,
+      $default: 40,
+      $lighter: 70,
+      $darker: 20
+    ),
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
@@ -132,7 +152,12 @@ $lovebook-dark: mat.m2-define-dark-theme((
   color: (
     primary: $lovebook-primary,
     secondary: $lovebook-accent,
-    tertiary: mat.m2-define-palette($lovebook-primary-palette, 40),
+    tertiary: mat.m2-define-palette(
+      $lovebook-primary-palette,
+      $default: 40,
+      $lighter: 70,
+      $darker: 20
+    ),
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
