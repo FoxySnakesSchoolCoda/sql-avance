@@ -5,30 +5,150 @@ import { Component } from '@angular/core';
   selector: 'app-auth-layout',
   template: `
     <div class="auth-layout">
+      <div class="brand-panel">
+        <div class="brand-logo">
+          <div class="icon">
+            <mat-icon>favorite</mat-icon>
+          </div>
+          <div class="text">
+            <h1>LoveBook</h1>
+            <p>Le réseau social pour vos moments partagés.</p>
+          </div>
+        </div>
+      </div>
       <main class="auth-card">
-        <router-outlet></router-outlet>
+        <header class="auth-card__header">
+          <h2>Bienvenue</h2>
+          <p>Connectez-vous pour retrouver votre communauté LoveBook.</p>
+        </header>
+        <section class="auth-card__content">
+          <router-outlet></router-outlet>
+        </section>
+        <footer class="auth-card__footer">
+          <small>© {{ currentYear }} LoveBook</small>
+        </footer>
       </main>
     </div>
   `,
   styles: [
     `
+      :host {
+        display: block;
+        min-height: 100vh;
+      }
+
       .auth-layout {
         min-height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+        gap: clamp(2rem, 6vw, 5rem);
+        padding: clamp(2rem, 6vw, 6rem);
+        background: radial-gradient(circle at top left, rgba(72, 148, 255, 0.25), transparent 45%),
+          radial-gradient(circle at bottom right, rgba(58, 201, 176, 0.2), transparent 40%),
+          linear-gradient(135deg, #0f5bd8, #36d1b6);
+        color: white;
+      }
+
+      .brand-panel {
+        display: flex;
+        justify-content: center;
+      }
+
+      .brand-logo {
         display: flex;
         align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #3b5998, #8b9dc3);
-        padding: 2rem;
+        gap: 1.25rem;
+        background: rgba(255, 255, 255, 0.08);
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+        border-radius: 24px;
+        backdrop-filter: blur(16px);
+        box-shadow: 0 30px 60px rgba(15, 91, 216, 0.25);
+        max-width: 420px;
       }
+
+      .brand-logo .icon {
+        width: clamp(64px, 7vw, 84px);
+        height: clamp(64px, 7vw, 84px);
+        border-radius: 22px;
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.65));
+        display: grid;
+        place-items: center;
+        color: #0f5bd8;
+      }
+
+      .brand-logo .icon mat-icon {
+        font-size: clamp(2.3rem, 4vw, 3rem);
+      }
+
+      .brand-logo .text h1 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 2.6rem);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      .brand-logo .text p {
+        margin: 0.25rem 0 0;
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        opacity: 0.85;
+      }
+
       .auth-card {
-        width: 100%;
-        max-width: 480px;
-        background: #fff;
-        border-radius: 12px;
-        padding: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        width: min(480px, 100%);
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.92);
+        color: #1f1f21;
+        border-radius: 24px;
+        padding: clamp(2rem, 3vw, 3rem);
+        box-shadow: 0 24px 48px rgba(15, 91, 216, 0.15);
+        backdrop-filter: blur(18px);
+      }
+
+      .auth-card__header {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .auth-card__header h2 {
+        margin: 0;
+        font-size: 2rem;
+        color: #0f5bd8;
+      }
+
+      .auth-card__header p {
+        margin: 0.5rem 0 0;
+        color: rgba(5, 5, 5, 0.65);
+      }
+
+      .auth-card__content {
+        display: block;
+      }
+
+      .auth-card__footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: rgba(5, 5, 5, 0.55);
+      }
+
+      @media (max-width: 768px) {
+        .auth-layout {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .brand-logo {
+          justify-content: center;
+          text-align: left;
+        }
+
+        .auth-card {
+          background: rgba(255, 255, 255, 0.98);
+        }
       }
     `,
   ],
 })
-export class AuthLayoutComponent {}
+export class AuthLayoutComponent {
+  readonly currentYear = new Date().getFullYear();
+}
