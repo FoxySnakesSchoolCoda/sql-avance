@@ -136,6 +136,7 @@ $lovebook-typography: mat.m2-define-typography-config(
 $lovebook-light: mat.m2-define-light-theme((
   color: (
     primary: $lovebook-primary,
+    accent: $lovebook-accent,
     secondary: $lovebook-accent,
     tertiary: mat.m2-define-palette(
       $lovebook-primary-palette,
@@ -143,6 +144,7 @@ $lovebook-light: mat.m2-define-light-theme((
       $lighter: 70,
       $darker: 20
     ),
+    warn: $lovebook-warn,
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
@@ -152,6 +154,7 @@ $lovebook-light: mat.m2-define-light-theme((
 $lovebook-dark: mat.m2-define-dark-theme((
   color: (
     primary: $lovebook-primary,
+    accent: $lovebook-accent,
     secondary: $lovebook-accent,
     tertiary: mat.m2-define-palette(
       $lovebook-primary-palette,
@@ -159,6 +162,7 @@ $lovebook-dark: mat.m2-define-dark-theme((
       $lighter: 70,
       $darker: 20
     ),
+    warn: $lovebook-warn,
     error: $lovebook-warn,
   ),
   typography: $lovebook-typography,
