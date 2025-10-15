@@ -1,0 +1,16 @@
+.page {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+header > h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header > p {
+  margin: 0;
+  color: #555;
+}
